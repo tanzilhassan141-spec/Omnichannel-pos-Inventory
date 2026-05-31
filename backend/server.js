@@ -2,12 +2,16 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
-app.use('/api/auth', authRoutes);
+const productRoutes = require('./routes/productRoutes');
+
+
 
 const app = express();
 
 // Middleware to parse JSON payloads
 app.use(express.json());
+app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes);
 
 // Database Connection
 mongoose.connect(process.env.MONGO_URI)
